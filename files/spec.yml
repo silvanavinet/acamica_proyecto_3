@@ -1,0 +1,486 @@
+openapi: 3.0.1
+info:
+  title: Delilah Restó
+  description: ""
+  version: 1.0.0
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: usuario
+  description: Endpoints para los usuarios
+  externalDocs:
+    description: ""
+    url: localhost:3000
+- name: productos
+  description: Endpoints para los productos
+  externalDocs:
+    description: ""
+    url: localhost:3000
+- name: pedidos
+  description: Endpoints para los pedidos
+  externalDocs:
+    description: ""
+    url: localhost:3000
+paths:
+  /login:
+    post:
+      tags:
+      - usuario
+      summary: Inicia sesión en la plataforma
+      operationId: login
+      requestBody:
+        description: Credenciales basicas del usuario
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre_usuario:
+                  type: string
+                contrasena:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                type: string
+        401:
+          description: usuario y/o contraseñia incorrecta
+          content: {}
+        5XX:
+          description: Error interno
+          content: {}
+      x-codegen-request-body-name: body
+  /register:
+    post:
+      tags:
+      - usuario
+      summary: Formulario de inscripción para la plataforma
+      operationId: register
+      requestBody:
+        description: formulario de inscripción basicas del usuario
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre_usuario:
+                  type: string
+                nombre_apellido:
+                  type: string
+                email:
+                  type: string
+                direccion_envio:
+                  type: string
+                contrasena:
+                  type: string
+                esAdministrador:
+                  type: boolean
+        required: true
+      responses:
+        201:
+          description: Recurso creado
+          content: {}
+        5XX:
+          description: Error interno
+          content: {}
+      x-codegen-request-body-name: body
+  /usuarios:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+      - usuario
+      summary: Entrega los usuarios del sistema si eres un admin, si no, entrega la
+        información de uno mismo
+      operationId: usuario_listar
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+        5XX:
+          description: Error interno
+          content: {}
+    put:
+      tags:
+      - usuario
+      security:
+        - bearerAuth: []
+      summary: Actualiza un usuario de la plataforma
+      operationId: usuario_actualizacion
+      parameters:
+      - name: id
+        in: query
+        description: Id del usuario a ser actualizado
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: formulario de inscripción basicas del usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: true
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+        5XX:
+          description: Error interno
+          content: {}
+      x-codegen-request-body-name: body
+  /productos:
+    get:
+      tags:
+      - productos
+      security:
+        - bearerAuth: []
+      summary: Lista los productos de la plataforma
+      operationId: producto_listar
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+        5XX:
+          description: Error interno
+          content: {}
+    put:
+      tags:
+      - productos
+      security:
+        - bearerAuth: []
+      summary: Actualiza un usuario de la plataforma
+      operationId: producto_actualizacion
+      parameters:
+      - name: id
+        in: query
+        description: Id del usuario a ser actualizado
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Json para actualizar un producto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+        required: true
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+        5XX:
+          description: Error interno
+          content: {}
+    post:
+      tags:
+      - productos
+      security:
+        - bearerAuth: []
+      summary: Crea un producto en la plataforma
+      operationId: producto_crear
+      requestBody:
+        description: Json para crear un producto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+        required: true
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+        5XX:
+          description: Error interno
+          content: {}
+    delete:
+      tags:
+      - productos
+      security:
+        - bearerAuth: []
+      summary: Borra un producto
+      operationId: producto_borrar
+      responses:
+        204:
+          description: Operación correcta
+        5XX:
+          description: Error interno
+          content: {}
+  /productos/{id}/favoritos:
+    post:
+      tags:
+      - productos
+      security:
+        - bearerAuth: []
+      summary: Marca un producto como favorito para un usuario
+      operationId: producto_marcar_favorito
+      parameters:
+      - name: id
+        in: path
+        description: Id de producto
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Producto'
+        5XX:
+          description: Error interno
+          content: {}
+    get:
+      tags:
+      - productos
+      security:
+        - bearerAuth: []
+      summary: Marca un producto como favorito para un usuario
+      operationId: producto_favoritos
+      parameters:
+      - name: id
+        in: path
+        description: ID of pet to return
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+        5XX:
+          description: Error interno
+          content: {}
+  /pedidos:
+    get:
+      tags:
+      - pedidos
+      security:
+        - bearerAuth: []
+      summary: Lista los pedidos de la plataforma
+      operationId: pedido_listar
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+        5XX:
+          description: Error interno
+          content: {}
+    put:
+      tags:
+      - productos
+      security:
+        - bearerAuth: []
+      summary: Actualiza el estado  de la plataforma
+      operationId: pedido_actualizacion
+      parameters:
+      - name: id
+        in: query
+        description: Id del usuario a ser actualizado
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Json para crear un pedido
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+        required: true
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+        5XX:
+          description: Error interno
+          content: {}
+    post:
+      tags:
+      - pedidos
+      security:
+        - bearerAuth: []
+      summary: Crea un pedido en la plataforma
+      operationId: pedido_crear
+      requestBody:
+        description: Json para crear un producto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+        required: true
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+        5XX:
+          description: Error interno
+          content: {}
+  /pedidos/{id}:
+    get:
+      tags:
+      - pedidos
+      security:
+        - bearerAuth: []
+      summary: Lista los pedidos de la plataforma
+      operationId: pedido_obtener_uno
+      parameters:
+      - name: id
+        in: path
+        description: Id del pedido
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+        5XX:
+          description: Error interno
+          content: {}
+    put:
+      tags:
+      - pedidos
+      security:
+        - bearerAuth: []
+      summary: Actualiza el estado de un pedido en la plataforma
+      operationId: pedido_actualizar_estado
+      parameters:
+      - name: id
+        in: path
+        description: Id del pedido
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: formulario de inscripción basicas del usuario
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                estadoNuevo:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: string
+        5XX:
+          description: Error interno
+          content: {}
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre_usuario:
+          type: string
+        nombre_appelido:
+          type: string
+        email:
+          type: string
+        direccion_envio:
+          type: string
+        telefono:
+          type: integer
+        constrasena:
+          type: string
+        esAdministrador:
+          type: boolean
+      xml:
+        name: Usuario
+    Producto:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        nombre_appelido:
+          type: integer
+      xml:
+        name: Producto
+    Pedido:
+      type: object
+      properties:
+        id_usuario:
+          type: integer
+        forma_pago:
+          type: string
+        estado_pedido:
+          type: string
+        total:
+          type: integer
+        productos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Producto'
+      xml:
+        name: Producto
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
