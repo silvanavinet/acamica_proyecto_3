@@ -6,302 +6,527 @@
 	},
 	"item": [
 		{
-			"name": "LOGIN",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"nombre_usuario\" : \"juin\",\n    \"contrasena\": \"1234\"\n\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"login"
-					]
-				},
-				"description": "ENDPOINT PARA LOGIN Y OBTENER TOKEN"
-			},
-			"response": []
-		},
-		{
-			"name": "REGISTRAR USUARIO",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"nombre_usuario\" : \"juin\",\n    \"nombre_apellido\" : \"polito mononi\",\n    \"email\":\"tubellaco@email.com\",\n    \"direccion_envio\":\"calle 123\", \n    \"contrasena\": \"1234\",\n    \"esAdministrador\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/registrar",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"registrar"
-					]
-				},
-				"description": "ENDPOINT PARA REGISTRAR USUARIO AL SISTEMA"
-			},
-			"response": []
-		},
-		{
-			"name": "ACTUALIZAR USUARIO",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTQ5OTcwMDJ9.j4Px6ZV1fqZySPK7q7jEe2SLbcqqWarL1ws4NX5BPvA",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"nombre_usuario\": \"yumeko2\",\n        \"nombre_apellido\": \"nombre apellido test\",\n        \"email\": \"test@email.com\",\n        \"direccion_envio\": \"calle 123\",\n        \"telefono\": \"123\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/usuarios?id=5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"usuarios"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "5"
-						}
-					]
-				},
-				"description": "PARA ACTUALIZAR USUARIO POR ID"
-			},
-			"response": []
-		},
-		{
-			"name": "OBTENER TODOS LOS PEDIDOS DEL SISTEMA",
-			"event": [
+			"name": "Productos",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
-							"type": "string"
+					"name": "CREAR PRODUCTO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjB9LCJpYXQiOjE2MTczODEyMjZ9.XHJvCwxh6VEzUS32IQkKbpjvEs45Bn3IsYhBITMGjUQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"nombre\":\"monstet\", \n    \"url_foto\": \"https://images.app.goo.gl/CYWs41Q3Bq8gExe46\", \n    \"precio\": 1800 \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"productos"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/pedidos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"pedidos"
-					]
-				},
-				"description": "PARA OBTENER TODOS LOS PEDIDOS DEL SISTEMA"
-			},
-			"response": []
-		},
-		{
-			"name": "CREAR PEDIDO",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id_usuario\": 2,\n    \"forma_pago\":\"Efectivo\", \n    \"total\": 2000,\n    \"productos\":[\n        {\n           \"id\": 1,\n           \"precio\": 500,\n           \"cantidad\": 1 \n        },\n                {\n           \"id\": 2,\n           \"precio\": 1500,\n           \"cantidad\": 1 \n        }\n    ]    \n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/pedidos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"pedidos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "OBTENER PEDIDO POR ID ",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTU3NTQxNzJ9.Ivt8Nq0GgVlzf9sVV30WrE9Im3vszNPbRZIA6EdZ9Ic",
-							"type": "string"
+					"name": "EDITAR PRODUCTO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"nombre\":\"frutilla\", \n    \"url_foto\": \"https://images.app.goo.gl/9uYPv6LZjbCYz8389\", \n    \"precio\": 1000 \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/productos/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"productos",
+								"6"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/pedidos/5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"pedidos",
-						"5"
-					]
+				{
+					"name": "BORRAR PRODUCTO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/productos/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"productos",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR PRODUCTOS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjEsImlkIjoxOX0sImlhdCI6MTYxNzQwODI0MX0._nh-QYk-1QDZBiLEjNjKJv3_r14QxAcVaRII7nLPEK8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/productos/favoritos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"productos",
+								"favoritos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MARCAR PRODUCTO FAVORITO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjAsImlkIjoxOH0sImlhdCI6MTYxNzQ4Nzc5Mn0.rivJEZ_P3LbES3xIkSkQOcC1TCbKRKpqa2AyzOdrvxw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/productos/3/marcar_favorito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"productos",
+								"3",
+								"marcar_favorito"
+							]
+						},
+						"description": "Endpoint para marcar un producto como favorito"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTA PRODUCTOS FAVORITOS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjAsImlkIjoxOH0sImlhdCI6MTYxNzQ4ODY4OH0.oW94Y4FEAg9eTIOP2uJMVaUrjqidnaUZuLpb2BZWXTQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/productos/favoritos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"productos",
+								"favoritos"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "ACTUALIZAR ESTADO DEL PEDIDO",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "CREAR PEDIDO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_usuario\": 2,\n    \"forma_pago\":\"Efectivo\", \n    \"total\": 2000,\n    \"productos\":[\n        {\n           \"id\": 1,\n           \"precio\": 500,\n           \"cantidad\": 1 \n        },\n                {\n           \"id\": 2,\n           \"precio\": 1500,\n           \"cantidad\": 1 \n        }\n    ]    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER PEDIDO POR ID ",
+					"event": [
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"estadoNuevo\":\"Confirmado\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/pedidos/5",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"api",
-						"pedidos",
-						"5"
-					]
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTU3NTQxNzJ9.Ivt8Nq0GgVlzf9sVV30WrE9Im3vszNPbRZIA6EdZ9Ic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pedidos/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pedidos",
+								"5"
+							]
+						}
+					},
+					"response": []
 				},
-				"description": "PARA PARA OBTENER USUARIO POR ID"
-			},
-			"response": []
+				{
+					"name": "ACTUALIZAR ESTADO DEL PEDIDO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"estadoNuevo\":\"Confirmado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/pedidos/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pedidos",
+								"5"
+							]
+						},
+						"description": "PARA PARA OBTENER USUARIO POR ID"
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER TODOS LOS PEDIDOS DEL SISTEMA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTY0MjI5OTN9.ycd-wAUHkr1EgCgxP9HBpq-cjSfPNRQPddnvxwJ7Rsc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pedidos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pedidos",
+								""
+							]
+						},
+						"description": "PARA OBTENER TODOS LOS PEDIDOS DEL SISTEMA"
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "OBTENER USUARIOS",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTU3NTQxNzJ9.Ivt8Nq0GgVlzf9sVV30WrE9Im3vszNPbRZIA6EdZ9Ic",
-							"type": "string"
-						}
-					]
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "ACTUALIZAR USUARIO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTQ5OTcwMDJ9.j4Px6ZV1fqZySPK7q7jEe2SLbcqqWarL1ws4NX5BPvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nombre_usuario\": \"kakin\",\n        \"nombre_apellido\": \"kakin cardenas\",\n        \"email\": \"kakin@email.com\",\n        \"direccion_envio\": \"kakin 123\",\n        \"telefono\": \"1234\",\n        \"contrasena\": \"1234\",\n        \"esAdministrador\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/usuarios?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "PARA ACTUALIZAR USUARIO POR ID"
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/usuarios",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"usuarios"
-					]
+				{
+					"name": "OBTENER USUARIOS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjEsImlkIjoxOX0sImlhdCI6MTYxNzU2MzQxM30.fzAmQCNOKNpCSLr7QhrXF_kY6qMu0XNKG5k8al9okKY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_usuario\" : \"silvi\",\n    \"contrasena\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						},
+						"description": "ENDPOINT PARA LOGIN Y OBTENER TOKEN"
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTRAR USUARIO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre_usuario\" : \"silvimilvi\",\n    \"nombre_apellido\" : \"polito mononi\",\n    \"email\":\"silvimilvi@email.com\",\n    \"direccion_envio\":\"calle 123\", \n    \"contrasena\": \"1234\",\n    \"esAdministrador\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/registrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"registrar"
+							]
+						},
+						"description": "ENDPOINT PARA REGISTRAR USUARIO AL SISTEMA"
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
