@@ -35,16 +35,14 @@ router.route('/')
 router.route('/:id')
     .get(async (req, res) => {
         const idPedido = req.params.id;
-        let pedidos = await Pedido.obtenerTodos(idPedido);  
-        console.log(pedidos);
-        pedidos = await Promise.all(
-            pedidos.map (async pedido => {
-                const detalles = await Pedido.obtenerDetalle(pedido.id);
-                pedido.detalle = detalles; 
-                return pedido;
-           })
-        );
-        res.json(pedidos);
+        let pedido = await Pedido.obtenerPorId(idPedido);  
+        
+        if (!pedido){
+            return res.json("Pedido no existe en la base de datos")
+        }
+
+        pedido.detalle = await Pedido.obtenerDetalle(pedido.id);
+        res.json(pedido);
     
     })
 
@@ -53,5 +51,14 @@ router.route('/:id')
         const { estadoNuevo } = req.body;
         Pedido.actualizarEstado(idPedido, estadoNuevo);
         res.json('El pedido ' + idPedido + 'se cambio al estado' + estadoNuevo);
-    });
-        module.exports = router;
+    })
+    .delete(
+        validarAdministrador,
+        async(req, res)=>{
+            const id = req.params.id;
+            const result = await Pedido.borrar(id);
+            res.json(result);
+        }
+    )
+
+module.exports = router;

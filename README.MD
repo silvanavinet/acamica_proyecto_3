@@ -19,7 +19,7 @@ Luego se debe importar el archivo de nombre:
 
 ```
 ./files/restaurante_2021-04-04.sql
-```
+
 
 ### Segundo:  Variables de Ambiente
 

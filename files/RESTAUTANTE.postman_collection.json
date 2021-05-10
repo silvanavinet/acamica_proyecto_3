@@ -386,6 +386,38 @@
 						"description": "PARA OBTENER TODOS LOS PEDIDOS DEL SISTEMA"
 					},
 					"response": []
+				},
+				{
+					"name": "BORRAR PEDIDO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7Im5vbWJyZV9hcGVsbGlkbyI6InBvbGl0byBtb25vbmkiLCJlbWFpbCI6InR1YmVsbGFjb0BlbWFpbC5jb20iLCJkaXJlY2Npb25fZW52aW8iOiJjYWxsZSAxMjMiLCJlc0FkbWluaXN0cmFkb3IiOjF9LCJpYXQiOjE2MTU3NTQxNzJ9.Ivt8Nq0GgVlzf9sVV30WrE9Im3vszNPbRZIA6EdZ9Ic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pedidos/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pedidos",
+								"5"
+							]
+						},
+						"description": "http://localhost:3000/api/pedidos/5"
+					},
+					"response": []
 				}
 			]
 		},

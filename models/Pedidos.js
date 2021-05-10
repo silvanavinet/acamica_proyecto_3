@@ -73,6 +73,7 @@ Pedido.obtenerPorId = async (id) => {
             type: sequelize.QueryTypes.SELECT 
         }
     );
+
     return result[0];  
 }
 
@@ -112,5 +113,21 @@ Pedido.actualizarEstado = async (id_pedido, estado_pedido) => {
     }
 }
 
+Pedido.borrar = async(id) =>{
+    try {
+
+        const result = await sequelize.query('DELETE FROM pedidos WHERE id=?',{
+            replacements: [id],
+            type: sequelize.QueryTypes.DELETE    
+        })
+
+        return "Pedido borrado con exito"
+
+
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 module.exports = Pedido;

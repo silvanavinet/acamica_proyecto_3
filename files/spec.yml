@@ -428,6 +428,27 @@ paths:
         5XX:
           description: Error interno
           content: {}
+    delete:
+      tags:
+      - pedidos
+      security:
+        - bearerAuth: []
+      summary: Borra el pedido con el id señalado
+      operationId: pedido_eliminar
+      parameters:
+      - name: id
+        in: path
+        description: Id del pedido
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: Operación correcta
+          content:
+            application/json:
+              schema:
+                type: string
 components:
   schemas:
     Usuario:
